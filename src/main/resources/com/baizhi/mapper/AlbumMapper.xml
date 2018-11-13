@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumDao">
+
+    <resultMap type="com.baizhi.entity.Album" id="MyAlbum">
+        <id column="aid" property="id"/>
+        <result column="atitle" property="title"/>
+        <result column="acoverimg" property="coverimg"/>
+        <result column="ascore" property="score"/>
+        <result column="acount" property="count"/>
+        <result column="aauthor" property="author"/>
+        <result column="abroadacast" property="broadcast"/>
+        <result column="abrief" property="brief"/>
+        <collection property="children" ofType="com.baizhi.entity.Chapter">
+            <result column="cid" property="ID"/>
+            <result column="ctitle" property="title"/>
+            <result column="csize" property="size"/>
+            <result column="cduration" property="duration"/>
+            <result column="cdownpath" property="downpath"/>
+            <result column="albumid" property="albumid"/>
+            <result property="updatedtime" column="cupdatetime"/>
+
+        </collection>
+    </resultMap>
+
+     <!--查所有的信息-->
+    <select id="queryAll" resultMap="MyAlbum">
+		 select a.id aid,a.title atitle,a.coverimg acverimg,a.score ascore,a.count acount,a.author aauthor,a.broadcast abroadacast,a.brief abrief,
+		 c.id cid,c.title ctitle,c.size csize,c.duration cduration,c.downpath cdownpath,c.updatedtime cupdatetime,c.albumid
+		from cmfz_album a left join cmyz_chapter c on a.id=c.albumid
+	</select>
+
+<!--添加专辑 -->
+    <insert id="insert" parameterType="com.baizhi.entity.Album">
+		insert into cmfz_album(title,coverimg,score,count,author,broadcast,brief,publishdate) values(#{title},#{coverimg},#{score},#{count},#{author},#{broadcast},#{brief},#{publishdate})
+	</insert>
+
+    <select id="queryOne" resultType="com.baizhi.entity.Album" parameterType="int">
+  	  select id,title,coverimg,score,count,author,broadcast,brief,publishdate from cmfz_album
+  	  where id=#{id}
+    </select>
+
+    <select id="queryByPage" resultType="com.baizhi.entity.Album">
+       select title,coverimg,score,count,author,broadcast,brief,publishdate from cmfz_album limit #{start},#{rows}
+    </select>
+
+    <select id="queryTotals" resultType="long">
+       select count(id) from cmfz_album
+    </select>
+
+  <!-- 添加章节-->
+   <!-- <insert id="insert" parameterType="com.baizhi.entity.Chapter">
+		insert into cmyz_chapter(title,size,duration,downpath,updatedime,albumid) values(#{title},#{size},#{duration},#{downpath},#{updatedime},#{albumid})
+	</insert>-->
+
+
+
+
+</mapper>

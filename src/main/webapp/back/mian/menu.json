@@ -1,0 +1,24 @@
+[
+  {"id":"21","name":"系统管理","iconCls":"icon-man","href":"",
+    "children":[
+      {"id":"211","name":"部门管理","iconCls":"icon-filter","href":"/back/dept/datagrid_js.jsp"},
+      {"id":"212","name":"员工管理","iconCls":"icon-help","href":"/back/dept/datagrid_js.jsp"},
+      {"id":"213","name":"数据统计","iconCls":"icon-search","href":"/aaa"}
+    ]
+  },
+  {"id":"22","name":"用户管理","iconCls":"icon-remove","href":"",
+    "children":[
+      {"id":"211","name":"用户查询","iconCls":"icon-filter","href":"/aaa"},
+      {"id":"212","name":"用户录入","iconCls":"icon-help","href":"/aaa"},
+      {"id":"213","name":"用户添加","iconCls":"icon-search","href":"/aaa"}
+    ]
+  },
+  {"id":"23","name":"学生管理","iconCls":"icon-add","href":"",
+    "children":[
+      {"id":"211","name":"成绩查询","iconCls":"icon-filter","href":"/aaa"},
+      {"id":"212","name":"课程管理","iconCls":"icon-help","href":"/aaa"},
+      {"id":"213","name":"人数查询","iconCls":"icon-search","href":"/aaa"}
+
+    ]
+  }
+]
